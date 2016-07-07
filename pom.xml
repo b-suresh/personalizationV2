@@ -6,7 +6,6 @@
   <name>personalizationV2</name>
   <description>personalization microservice using Vertx.io</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -53,4 +52,7 @@
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
+  <properties>
+  	<mainClass>com.iot.personalization.vertx.SimpleRestHandler</mainClass>
+  </properties>
 </project>
