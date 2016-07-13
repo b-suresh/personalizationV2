@@ -15,6 +15,56 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+		  <!-- https://mvnrepository.com/artifact/io.fabric8/docker-maven-plugin -->
+	    <groupId>io.fabric8</groupId>
+	    <artifactId>docker-maven-plugin</artifactId>
+	    <version>0.14.1</version>
+		  <executions>
+		    <execution>
+		       <id>build</id>
+		       <phase>package</phase>
+		       <goals>
+		         <!-- "build" should be used to create the images with the
+		              artifact -->
+		         <goal>build</goal>
+		       </goals>
+		    </execution>
+		  </executions>
+		  <configuration>
+		     <images>
+		        <!-- A single's image configuration -->
+		        <image>
+		        	<name>${docker.image}</name>
+		        	<build>
+		        		<from>vertx/vertx3</from>
+		        		<tags>
+		        			<tag>${project.version}</tag>
+		        		</tags>
+		        		<ports>
+		        			<port>8080</port>
+		        		</ports>
+		        		<command>vertx run com.iot.personalization.vertx.SimpleRestHandler -cp /usr/verticles/${project.artifactId}-${project.version}.jar:/usr/verticles/personalization-0.0.1-SNAPSHOT.jar
+		        		</command>
+		        		<assembly>
+		        			<mode>dir</mode>
+		        			<basedir>/usr/verticles</basedir>
+							<descriptorRef>artifact-with-dependencies</descriptorRef>
+							<!-- 
+							<dependencySets>
+								<dependencySet>
+									<includes>
+										<include>:${project.artifactId}</include>
+									</includes>
+									<outputDirectory>.</outputDirectory>
+								</dependencySet>
+							</dependencySets> -->
+		        		</assembly>
+		        	</build>
+		        </image>
+		     </images>
+		  </configuration>
+		</plugin>
     </plugins>
   </build>
   <repositories>
@@ -54,5 +104,6 @@
   </dependencies>
   <properties>
   	<mainClass>com.iot.personalization.vertx.SimpleRestHandler</mainClass>
+  	<docker.image>pervertxdocker</docker.image>
   </properties>
 </project>
