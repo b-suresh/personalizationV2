@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: pervertxdocker
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pervertxdocker
+    spec:
+      containers:
+        -
+          image: "bsuresh/pervertxdocker:0.0.1-SNAPSHOT"
+          name: pervertxdocker
+          env:
+            -
+              name: DBHOSTNAME
+              value: ec2-54-152-243-52.compute-1.amazonaws.com
+
+          ports:
+            -
+              containerPort: 8080
+              name: http
