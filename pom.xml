@@ -42,10 +42,13 @@
 		        			<tag>${project.version}</tag>
 		        		</tags>
 		        		<ports>
-		        			<port>8080</port>
+		        			<port>7070</port>
+		        			<port>5701</port>
+		        			<port>5702</port>
 		        		</ports>
-		        		<command>vertx run com.iot.personalization.vertx.SimpleRestHandler -cp /usr/verticles/${project.artifactId}-${project.version}.jar:/usr/verticles/personalization-0.0.1-SNAPSHOT.jar
-		        		</command>
+		        		<cmd>
+		        			<shell>export LOCAL_IP=`ifconfig | grep "inet " | grep -v 127.0.0.1|cut -d" " -f2`;vertx run com.iot.personalization.vertx.SimpleRestHandler -cp /usr/verticles/${project.artifactId}-${project.version}.jar:/usr/verticles/personalization-0.0.1-SNAPSHOT.jar -Dlocal.ip=$LOCAL_IP -cluster</shell>
+		        		</cmd>
 		        		<assembly>
 		        			<mode>dir</mode>
 		        			<basedir>/usr/verticles</basedir>
@@ -100,6 +103,12 @@
   		<groupId>com.iot</groupId>
   		<artifactId>personalization</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>io.vertx</groupId>
+  		<artifactId>vertx-hazelcast</artifactId>
+  		<version>3.3.3</version>
   	</dependency>
   </dependencies>
   <properties>
