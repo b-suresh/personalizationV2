@@ -174,7 +174,14 @@ public class SimpleRestHandler extends AbstractVerticle {
         
         Config hazelcastConfig = new Config();
         NetworkConfig networkConfig = hazelcastConfig.getNetworkConfig();
-        networkConfig.getJoin().getTcpIpConfig().addMember("172.17.0.2").setEnabled(true);
+        String localIp = System.getenv("LOCAL_IP");
+        System.out.println("localIp:"+localIp);
+        String leaderIp = System.getenv("SURESH1_PORT_5701_TCP_ADDR");
+        if(leaderIp == null || leaderIp.trim().equals("")){
+        	leaderIp = localIp;
+        }
+        System.out.println("leaderIp:"+leaderIp);
+        networkConfig.getJoin().getTcpIpConfig().addMember(leaderIp).setEnabled(true);
         networkConfig.getJoin().getMulticastConfig().setEnabled(false);
 
 		ClusterManager mgr = new HazelcastClusterManager(hazelcastConfig);

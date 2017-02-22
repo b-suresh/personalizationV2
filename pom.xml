@@ -47,7 +47,7 @@
 		        			<port>5702</port>
 		        		</ports>
 		        		<cmd>
-		        			<shell>export LOCAL_IP=`ifconfig | grep "inet " | grep -v 127.0.0.1|cut -d" " -f2`;vertx run com.iot.personalization.vertx.SimpleRestHandler -cp /usr/verticles/${project.artifactId}-${project.version}.jar:/usr/verticles/personalization-0.0.1-SNAPSHOT.jar -Dlocal.ip=$LOCAL_IP -cluster</shell>
+		        			<shell>export LOCAL_IP=`ifconfig|grep "inet "|grep -v 127.0.0.1|cut -d: -f2|cut -d" " -f1`;vertx run com.iot.personalization.vertx.SimpleRestHandler -cp /usr/verticles/${project.artifactId}-${project.version}.jar:/usr/verticles/personalization-0.0.1-SNAPSHOT.jar -Dlocal.ip=$LOCAL_IP -cluster</shell>
 		        		</cmd>
 		        		<assembly>
 		        			<mode>dir</mode>
