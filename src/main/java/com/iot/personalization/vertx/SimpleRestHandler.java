@@ -187,4 +187,5 @@ public class SimpleRestHandler extends AbstractVerticle {
 		ClusterManager mgr = new HazelcastClusterManager(hazelcastConfig);
 		return new VertxOptions().setClusterManager(mgr);
 	}
-};
+	
+}
