@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     -
-      image: "bsuresh/pervertxdocker:0.0.1-SNAPSHOT"
+      image: "bsuresh/pervertxdocker:0.0.2-SNAPSHOT"
       name: pervertxdocker
       env:
       -
@@ -15,4 +15,8 @@ spec:
         value: "ec2-54-152-243-52.compute-1.amazonaws.com"
       ports:
         -
-          containerPort: 8080
+          containerPort: 7070
+        -
+          containerPort: 5701
+        -
+          containerPort: 5702                    

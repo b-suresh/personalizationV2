@@ -9,8 +9,18 @@ spec:
     -
       name: http
       port: 80
-      targetPort: 8080
+      targetPort: 7070
       nodePort: 30080
+    -
+      name: tcp1
+      protocol: TCP
+      port: 5701
+      targetPort: 5701
+    -
+      name: tcp2
+      protocol: TCP
+      port: 5702
+      targetPort: 5702     
   selector:
     app: pervertxdocker
   type: LoadBalancer

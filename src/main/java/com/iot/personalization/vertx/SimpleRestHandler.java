@@ -2,8 +2,6 @@ package com.iot.personalization.vertx;
 
 import java.util.function.Consumer;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.NetworkConfig;
 import com.iot.personalization.Customer;
 import com.iot.personalization.CustomerIdentity;
 import com.iot.personalization.CustomerService;
@@ -171,20 +169,7 @@ public class SimpleRestHandler extends AbstractVerticle {
 	 * 
 	 */
 	protected static VertxOptions buildVertxOptions() {
-        
-        Config hazelcastConfig = new Config();
-        NetworkConfig networkConfig = hazelcastConfig.getNetworkConfig();
-        String localIp = System.getenv("LOCAL_IP");
-        System.out.println("localIp:"+localIp);
-        String leaderIp = System.getenv("SURESH1_PORT_5701_TCP_ADDR");
-        if(leaderIp == null || leaderIp.trim().equals("")){
-        	leaderIp = localIp;
-        }
-        System.out.println("leaderIp:"+leaderIp);
-        networkConfig.getJoin().getTcpIpConfig().addMember(leaderIp).setEnabled(true);
-        networkConfig.getJoin().getMulticastConfig().setEnabled(false);
-
-		ClusterManager mgr = new HazelcastClusterManager(hazelcastConfig);
+		ClusterManager mgr = new HazelcastClusterManager();
 		return new VertxOptions().setClusterManager(mgr);
 	}
 	

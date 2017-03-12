@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.iot.personalization</groupId>
   <artifactId>vertx</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>personalizationV2</name>
   <description>personalization microservice using Vertx.io</description>
   <build>
@@ -108,8 +108,23 @@
   	<dependency>
   		<groupId>io.vertx</groupId>
   		<artifactId>vertx-hazelcast</artifactId>
-  		<version>3.3.3</version>
+  		<version>3.4.0</version>
   	</dependency>
+  	<dependency>
+      <groupId>com.hazelcast</groupId>
+      <artifactId>hazelcast-kubernetes</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+	<!-- <dependency>
+		<groupId>io.vertx</groupId>
+		<artifactId>vertx-service-discovery</artifactId>
+		<version>3.4.0</version>
+	</dependency>
+	<dependency>
+  		<groupId>io.vertx</groupId>
+  		<artifactId>vertx-service-discovery-bridge-kubernetes</artifactId>
+  		<version>3.4.0</version>
+	</dependency> -->
   </dependencies>
   <properties>
   	<mainClass>com.iot.personalization.vertx.SimpleRestHandler</mainClass>
